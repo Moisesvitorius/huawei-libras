@@ -1,0 +1,74 @@
+# 1.This file shows the parsed IR info when graph evaluating failed to help find the problem.
+# 2.You can search the last `------------------------>` to the node which is inferred failed.
+# 3.Refer to https://www.mindspore.cn/search?inputValue=analyze_fail.ir to get more instructions.
+# ===============================================================================
+
+subgraph attr:
+subgraph instance: after_grad.42 : 000001DF192CD730
+# In file C:\Users\ICTCO\Desktop\projeto_libras\venv_libras\lib\site-packages\mindspore\ops\composite\base.py:573/                    def after_grad(*args):/
+subgraph @after_grad.42(%para1_args0, %para2_args1, %para3_lstm.weight_ih_l0, %para4_lstm.weight_ih_l0_reverse, %para5_lstm.weight_ih_l1, %para6_lstm.weight_ih_l1_reverse, %para7_lstm.weight_hh_l0, %para8_lstm.weight_hh_l0_reverse, %para9_lstm.weight_hh_l1, %para10_lstm.weight_hh_l1_reverse, %para11_lstm.bias_ih_l0, %para12_lstm.bias_ih_l0_reverse, %para13_lstm.bias_ih_l1, %para14_lstm.bias_ih_l1_reverse, %para15_lstm.bias_hh_l0, %para16_lstm.bias_hh_l0_reverse, %para17_lstm.bias_hh_l1, %para18_lstm.bias_hh_l1_reverse, %para19_fc1.weight, %para20_fc1.bias, %para21_fc2.weight, %para22_fc2.bias) {
+  %1([CNode]46) = MakeTuple(%para1_args0, %para2_args1)
+      : (<Tensor[Float32], (4, 30, 126)>, <Tensor[Int32], (4)>) -> (<Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((4, 30, 126), (4))>)
+      #scope: (Default)
+      # In file C:\Users\ICTCO\Desktop\projeto_libras\venv_libras\lib\site-packages\mindspore\ops\composite\base.py:573/                    def after_grad(*args):/
+  %2(47) = UnpackGraph(call @construct.Default.48, %1)
+      : (<Func, NoShape>, <Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((4, 30, 126), (4))>) -> (<Func, NoShape>)
+      #scope: (Default)
+      # In file C:\Users\ICTCO\Desktop\projeto_libras\venv_libras\lib\site-packages\mindspore\ops\composite\base.py:574/                        return grad_(fn, weights)(*args)/
+  %3([CNode]49) = MakeTuple(%para3_lstm.weight_ih_l0, %para4_lstm.weight_ih_l0_reverse, %para5_lstm.weight_ih_l1, %para6_lstm.weight_ih_l1_reverse, %para7_lstm.weight_hh_l0, %para8_lstm.weight_hh_l0_reverse, %para9_lstm.weight_hh_l1, %para10_lstm.weight_hh_l1_reverse, %para11_lstm.bias_ih_l0, %para12_lstm.bias_ih_l0_reverse, %para13_lstm.bias_ih_l1, %para14_lstm.bias_ih_l1_reverse, %para15_lstm.bias_hh_l0, %para16_lstm.bias_hh_l0_reverse, %para17_lstm.bias_hh_l1, %para18_lstm.bias_hh_l1_reverse, %para19_fc1.weight, %para20_fc1.bias, %para21_fc2.weight, %para22_fc2.bias)
+      : (<Ref[Tensor[Float32]], (512, 126)>, <Ref[Tensor[Float32]], (512, 126)>, <Ref[Tensor[Float32]], (512, 256)>, <Ref[Tensor[Float32]], (512, 256)>, <Ref[Tensor[Float32]], (512, 128)>, <Ref[Tensor[Float32]], (512, 128)>, <Ref[Tensor[Float32]], (512, 128)>, <Ref[Tensor[Float32]], (512, 128)>, <Ref[Tensor[Float32]], (512)>, <Ref[Tensor[Float32]], (512)>, <Ref[Tensor[Float32]], (512)>, <Ref[Tensor[Float32]], (512)>, <Ref[Tensor[Float32]], (512)>, <Ref[Tensor[Float32]], (512)>, <Ref[Tensor[Float32]], (512)>, <Ref[Tensor[Float32]], (512)>, <Ref[Tensor[Float32]], (64, 256)>, <Ref[Tensor[Float32]], (64)>, <Ref[Tensor[Float32]], (5, 64)>, <Ref[Tensor[Float32]], (5)>) -> (<Tuple[Ref[Tensor[Float32]]*20], TupleShape((512, 126), (512, 126), (512, 256), (512, 256), (512, 128), (512, 128), (512, 128), (512, 128), (512), (512), (512), (512), (512), (512), (512), (512), (64, 256), (64), (5, 64), (5))>)
+      #scope: (Default)
+      # In file C:\Users\ICTCO\Desktop\projeto_libras\venv_libras\lib\site-packages\mindspore\ops\composite\base.py:574/                        return grad_(fn, weights)(*args)/
+  %4(47) = S-Prim-grad(%2, %3)
+      : (<Func, NoShape>, <Tuple[Ref[Tensor[Float32]]*20], TupleShape((512, 126), (512, 126), (512, 256), (512, 256), (512, 128), (512, 128), (512, 128), (512, 128), (512), (512), (512), (512), (512), (512), (512), (512), (64, 256), (64), (5, 64), (5))>) -> (<Func, NoShape>)
+      #scope: (Default)
+      # In file C:\Users\ICTCO\Desktop\projeto_libras\venv_libras\lib\site-packages\mindspore\ops\composite\base.py:574/                        return grad_(fn, weights)(*args)/
+
+#------------------------> 0
+  %5(47) = UnpackCall-unpack_call(%4, %1)
+      : (<Func, NoShape>, <Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((4, 30, 126), (4))>) -> (<null>)
+      #scope: (Default)
+      # In file C:\Users\ICTCO\Desktop\projeto_libras\venv_libras\lib\site-packages\mindspore\ops\composite\base.py:574/                        return grad_(fn, weights)(*args)/
+  Return(%5)
+      : (<null>)
+      #scope: (Default)
+      # In file C:\Users\ICTCO\Desktop\projeto_libras\venv_libras\lib\site-packages\mindspore\ops\composite\base.py:574/                        return grad_(fn, weights)(*args)/
+}
+# Order:
+#   1: @after_grad.42:47{[0]: ValueNode<UnpackGraphPrimitive> UnpackGraph, [1]: ValueNode<FuncGraph> construct.Default.48, [2]: [CNode]46}
+#   2: @after_grad.42:47{[0]: ValueNode<DoSignaturePrimitive> S-Prim-grad, [1]: 47, [2]: [CNode]49}
+#   3: @after_grad.42:47{[0]: ValueNode<UnpackCall> MetaFuncGraph-unpack_call.50, [1]: 47, [2]: [CNode]46}
+#   4: @after_grad.42:[CNode]51{[0]: ValueNode<Primitive> Return, [1]: 47}
+
+
+subgraph attr:
+core : 1
+subgraph instance: UnpackCall.43 : 000001DF17853790
+# In file C:\Users\ICTCO\Desktop\projeto_libras\venv_libras\lib\site-packages\mindspore\ops\composite\base.py:574/                        return grad_(fn, weights)(*args)/
+subgraph @UnpackCall.43(%para23_, %para24_) {
+  %1(47) = TupleGetItem(%para24_45, I64(0))
+      : (<Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((4, 30, 126), (4))>, <Int64, NoShape>) -> (<Tensor[Float32], (4, 30, 126)>)
+      #scope: (Default)
+      # In file C:\Users\ICTCO\Desktop\projeto_libras\venv_libras\lib\site-packages\mindspore\ops\composite\base.py:574/                        return grad_(fn, weights)(*args)/
+  %2(47) = TupleGetItem(%para24_45, I64(1))
+      : (<Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((4, 30, 126), (4))>, <Int64, NoShape>) -> (<Tensor[Int32], (4)>)
+      #scope: (Default)
+      # In file C:\Users\ICTCO\Desktop\projeto_libras\venv_libras\lib\site-packages\mindspore\ops\composite\base.py:574/                        return grad_(fn, weights)(*args)/
+
+#------------------------> 1
+  %3(47) = %para23_44(%1, %2)
+      : (<Tensor[Float32], (4, 30, 126)>, <Tensor[Int32], (4)>) -> (<null>)
+      #scope: (Default)
+      # In file C:\Users\ICTCO\Desktop\projeto_libras\venv_libras\lib\site-packages\mindspore\ops\composite\base.py:574/                        return grad_(fn, weights)(*args)/
+  Return(%3)
+      : (<null>)
+      #scope: (Default)
+      # In file C:\Users\ICTCO\Desktop\projeto_libras\venv_libras\lib\site-packages\mindspore\ops\composite\base.py:574/                        return grad_(fn, weights)(*args)/
+}
+# Order:
+#   1: @UnpackCall.43:47{[0]: 44, [1]: 47, [2]: 47}
+#   2: @UnpackCall.43:47{[0]: ValueNode<Primitive> Return, [1]: 47}
+
+
+#===============================================================================
+# num of function graphs in stack: 2
