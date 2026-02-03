@@ -1,0 +1,5 @@
+mindspore
+mediapipe
+opencv-python
+numpy
+joblib

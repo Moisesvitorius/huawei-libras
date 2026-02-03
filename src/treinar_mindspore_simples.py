@@ -7,7 +7,7 @@ import pickle
 import os
 
 print("="*60)
-print("       HARMONYCARE - TREINAMENTO MINDSPORE")
+print("       INTELIMED - TREINAMENTO MINDSPORE")
 print("="*60)
 
 # Configurar contexto (IMPORTANTE!)

@@ -33,5 +33,5 @@ while cap.isOpened():
             mp_desenho.draw_landmarks(frame, landmarks, mp_maos.HAND_CONNECTIONS)  
         print("Maos detectadas!")  
   
-    cv2.imshow('HarmonyCare - Detecao de Libras', frame)  
+    cv2.imshow('InteliMed - Detecao de Libras', frame)  
   

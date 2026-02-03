@@ -6,7 +6,7 @@ import os
 import pickle
 
 print("=" * 60)
-print("       HARMONYCARE - COLETOR DE LIBRAS")
+print("       INTELIMED - COLETOR DE LIBRAS")
 print("=" * 60)
 
 # Inicializar MediaPipe
@@ -22,15 +22,15 @@ hands = mp_maos.Hands(
 # Criar pasta para dados
 os.makedirs("data", exist_ok=True)
 
-print("\n📹 Inicializando webcam...")
+print("\n[INFO] Inicializando webcam...")
 cap = cv2.VideoCapture(0)
 
 if not cap.isOpened():
-    print("❌ Erro: Webcam não encontrada!")
+    print("[ERRO] Erro: Webcam não encontrada!")
     exit()
 
-print("✅ Webcam pronta!")
-print("\n🎯 Instruções:")
+print("[OK] Webcam pronta!")
+print("\n[INFO] Instruções:")
 print("1. Faça o sinal com suas mãos")
 print("2. Pressione ESPAÇO para começar gravação")
 print("3. Grave por 3 segundos (30 frames)")
@@ -74,7 +74,7 @@ while True:
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (200, 200, 200), 2)
     
     # Mostrar frame
-    cv2.imshow('HarmonyCare - Coletor de Libras', frame)
+    cv2.imshow('InteliMed - Coletor de Libras', frame)
     
     # Teclas
     key = cv2.waitKey(1) & 0xFF
@@ -83,7 +83,7 @@ while True:
         break
     elif key == 32:  # ESPAÇO
         if not coletando:
-            print(f"\n🎬 Gravando sinal: {sinal_atual}")
+            print(f"\n[INFO] Gravando sinal: {sinal_atual}")
             coletando = True
             frames_coletados = []
             frame_count = 0
@@ -104,11 +104,11 @@ while True:
         frame_count += 1
         
         # Progresso no terminal
-        print(f"\r📦 Frames coletados: {frame_count}/30", end="")
+        print(f"\r[INFO] Frames coletados: {frame_count}/30", end="")
         
         # Parar após 30 frames (~3 segundos)
         if frame_count >= 30:
-            print(f"\n✅ Sinal '{sinal_atual}' gravado com sucesso!")
+            print(f"\n[OK] Sinal '{sinal_atual}' gravado com sucesso!")
             
             # Salvar dados
             dados = {
@@ -121,17 +121,17 @@ while True:
             with open(caminho_arquivo, "wb") as f:
                 pickle.dump(dados, f)
             
-            print(f"💾 Salvo em: {caminho_arquivo}")
+            print(f"[OK] Salvo em: {caminho_arquivo}")
             
             # Próximo sinal
-            sinais = ["dor", "febre", "tosse", "cabeca", "coracao"]
+            sinais = ["dor"]
             idx = sinais.index(sinal_atual) if sinal_atual in sinais else 0
             if idx + 1 < len(sinais):
                 sinal_atual = sinais[idx + 1]
-                print(f"\n➡️  Próximo sinal: {sinal_atual}")
+                print(f"\n>> Próximo sinal: {sinal_atual}")
                 print("Pressione ESPAÇO para gravar próximo sinal")
             else:
-                print("\n🎉 Todos os sinais gravados!")
+                print("\n[OK] Todos os sinais gravados!")
                 print("Pressione ESC para sair")
             
             coletando = False
@@ -140,6 +140,6 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 print("\n" + "=" * 60)
-print("👋 Coleta finalizada!")
-print("📁 Dados salvos na pasta: data/")
+print("[OK] Coleta finalizada!")
+print("[INFO] Dados salvos na pasta: data/")
 print("=" * 60)

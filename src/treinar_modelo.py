@@ -8,7 +8,7 @@ import os
 from collections import defaultdict
 
 print("="*60)
-print("       HARMONYCARE - TREINAMENTO DO MODELO")
+print("       INTELIMED - TREINAMENTO DO MODELO")
 print("="*60)
 
 # 1. CARREGAR DADOS

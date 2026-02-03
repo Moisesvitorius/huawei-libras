@@ -7,7 +7,7 @@ import joblib
 from collections import deque
 
 print("="*60)
-print("  HARMONYCARE - RECONHECIMENTO MINDSPORE")
+print("  INTELIMED - RECONHECIMENTO MINDSPORE")
 print("="*60)
 
 # Configurar MindSpore
@@ -171,7 +171,7 @@ while True:
     painel = np.zeros((h, LARGURA_PAINEL, 3), dtype=np.uint8)  # Painel preto
     
     # Título do Painel
-    cv2.putText(painel, "HarmonyCare", (20, 40), 
+    cv2.putText(painel, "InteliMed", (20, 40), 
                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, BRANCO, 2)
     cv2.line(painel, (20, 50), (LARGURA_PAINEL-20, 50), BRANCO, 1)
 
@@ -211,7 +211,7 @@ while True:
     interface_final = np.hstack((frame, painel))
     
     # Mostrar frame
-    cv2.imshow('HarmonyCare - Reconhecimento MindSpore', interface_final)
+    cv2.imshow('InteliMed - Reconhecimento MindSpore', interface_final)
     
     # Sair com 'q'
     if cv2.waitKey(1) & 0xFF == ord('q'):
